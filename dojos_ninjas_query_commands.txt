@@ -1,0 +1,56 @@
+INSERT INTO dojos (name)
+VALUES ("Coding Palace"), ("Coding Studio"), ("Coding Town");
+SELECT * FROM dojos
+
+
+SET SQL_SAFE_UPDATES = 0;
+DELETE FROM dojos;
+SELECT * FROM dojos
+//BYPASS SAFE MODE MANUALLY TO DELETE ALL DOJO INFO
+
+
+INSERT INTO dojos (name, created_at, updated_at)
+VALUES ("Ninja Code", NOW(), NOW()), ("Samurai Programming", NOW(), NOW()), ("VIKING TECH", NOW(), NOW());
+SELECT * FROM dojos
+
+
+INSERT INTO ninjas (first_name, last_name, age, dojo_id, created_at, updated_at)
+VALUES 
+("Brendan", "Cordova", 27, 4, NOW(), NOW()), 
+("Chuck", "Pancake", 70, 4, NOW(), NOW()),
+("Tori", "Cordova", 26, 4, NOW(), NOW());
+SELECT * FROM ninjas
+
+
+INSERT INTO ninjas (first_name, last_name, age, dojo_id, created_at, updated_at)
+VALUES 
+("Matthew", "Petersen", 27, 5, NOW(), NOW()), 
+("Suzie", "Petersen", 26, 5, NOW(), NOW()),
+("Kayne", "Birthday-Boy", 14, 5, NOW(), NOW());
+SELECT * FROM ninjas
+
+
+INSERT INTO ninjas (first_name, last_name, age, dojo_id, created_at, updated_at)
+VALUES 
+("Naruto", "Uzumaki", 21, 6, NOW(), NOW()), 
+("Sasuke", "Uchiha", 22, 6, NOW(), NOW()),
+("Jiraiya", "The-Galant", 57, 6, NOW(), NOW());
+SELECT * FROM ninjas
+
+
+SELECT * FROM ninjas
+WHERE dojo_id = 4;
+
+
+SELECT * FROM ninjas
+WHERE dojo_id = 6;
+
+SELECT * FROM dojos
+LEFT JOIN ninjas ON dojos.id = ninjas.dojo_id
+	WHERE dojos.id = (SELECT id FROM dojos ORDER BY id DESC LIMIT 1);
+//JOINS THE TABLES TOGETHER LITERALLY
+
+
+SELECT * FROM dojos
+WHERE dojos.id = (SELECT dojo_id FROM ninjas ORDER BY dojo_id DESC LIMIT 1);
+//CONDITIONAL SELECTION BASED OFF OF DOJOS.ID SET EQUAL TO QUERY DOJO_ID IN NINJAS TABLE
